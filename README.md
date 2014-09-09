@@ -21,11 +21,15 @@ nodeconfeu
 
 Default params [full output for 3 seconds]:
 
-`curl -i -XPOST -H "Authorization: Bearer TOKEN" https://api-http.littlebitscloud.cc/v2/devices/DEVICE_ID/output`
+```
+curl -i -XPOST -H "Authorization: Bearer TOKEN" https://api-http.littlebitscloud.cc/v2/devices/DEVICE_ID/output
+````
 
 Custom params [half output for 5 seconds]:
 
-`curl -i -XPOST -H "Authorization: Bearer TOKEN" https://api-http.littlebitscloud.cc/v2/devices/DEVICE_ID/output -d percent=50 -d duration_ms=5000`
+```
+curl -i -XPOST -H "Authorization: Bearer TOKEN" https://api-http.littlebitscloud.cc/v2/devices/DEVICE_ID/output -d percent=50 -d duration_ms=5000
+```
 
 
 ## Receive from cloudBit input:
@@ -39,9 +43,13 @@ Custom params [half output for 5 seconds]:
 
 Create a subscription [set cloudBit to ping your endpoint]:
 
-`curl -i -XPOST -H "Authorization: Bearer TOKEN" https://api-http.littlebitscloud.cc/v2/subscriptions -d publisher_id=DEVICE_ID -d subscriber_id=http://your-app.heroku.com -d publisher_events='["amplitude:delta:ignite"]'`
+```
+curl -i -XPOST -H "Authorization: Bearer TOKEN" https://api-http.littlebitscloud.cc/v2/subscriptions -d publisher_id=DEVICE_ID -d subscriber_id=http://your-app.heroku.com -d publisher_events='["amplitude:delta:ignite"]'
+```
 
 Check your subscription:
 
-`curl -H "Authorization: Bearer TOKEN" https://api-http.littlebitscloud.cc/v2/subscriptions?publisher_id=DEVICE_ID`
+```
+curl -H "Authorization: Bearer TOKEN" https://api-http.littlebitscloud.cc/v2/subscriptions?publisher_id=DEVICE_ID
+```
 
