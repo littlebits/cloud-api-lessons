@@ -1,55 +1,76 @@
-nodeconfeu
-==========
+# ⧮ Hardware workshop at NodeConf EU 2014
 
-## Prerequisites:
-- sign up for an account on littlebits.cc
-- come visit Colin and get a cloudBit
-- heroku account to receive cloudBit input data
-
-
-## littleBits API
-- docs: http://developer.littlebitscloud.cc
-- cloudBit Cloud Control: http://littlebits.cc/cloudstart
+## Prerequisites
+1. Have a littleBits account to associate your cloudBit to; [Create account](https://littlebits.cc/signup).
+2. Have a Heroku (or whichever) account to host a simple webhook endpoint for your cloudBit.
+3. Visit Colin, tell him the email used for your littleBits account, get a cloudBit.
+4. Get `ACCESS_TOKEN` and `CLOUDBIT_ID` from [Cloud Control](control.littlebitscloud.cc)
 
 
-## Send to cloudBit output:
 
-- get access token & cloudBit ID from Cloud Control
-
-
-#### sample CURLS [remember to replace TOKEN and DEVICE_ID]
-
-Default params [full output for 3 seconds]:
-
-```
-curl -i -XPOST -H "Authorization: Bearer TOKEN" https://api-http.littlebitscloud.cc/v2/devices/DEVICE_ID/output
-````
-
-Custom params [half output for 5 seconds]:
-
-```
-curl -i -XPOST -H "Authorization: Bearer TOKEN" https://api-http.littlebitscloud.cc/v2/devices/DEVICE_ID/output -d percent=50 -d duration_ms=5000
-```
+## Resources
+- cloudBit Cloud Control app: http://littlebits.cc/cloudstart
+- littleBits Cloud HTTP API docs: http://developer.littlebitscloud.cc
 
 
-## Receive from cloudBit input:
+## Lessons
 
-- get sample code from 
-- create heroku app: run `heroku apps:create <whatever-project-name?>`
-- create a subscription from your cloudBit to your endpoint
+##### Lesson 1: Write to cloudBit
+1. Try default output
+  ```
+  curl -i -XPOST \
+  -H "Authorization: Bearer ACCESS_TOKEN" \
+  https://api-http.littlebitscloud.cc/v2/devices/CLOUDBIT_ID/output
+  ````
 
+2. Try 50% output for 5 seconds
+  ```
+  curl -i -XPOST \
+  -H "Authorization: Bearer ACCESS_TOKEN" \
+  https://api-http.littlebitscloud.cc/v2/devices/CLOUDBIT_ID/output \
+  -d percent=50 \
+  -d duration_ms=5000
+  ```
 
-#### sample CURLs [remember to replace TOKEN and DEVICE_ID]
+3. Investigate the HTTP API docs for how you can send a perpetual output percentage to your cloudBit
 
-Create a subscription [set cloudBit to ping your endpoint]:
+##### Lesson 2: Read from cloudBit
+Replace `YOUR_APP` with the application name you would like.
 
-```
-curl -i -XPOST -H "Authorization: Bearer TOKEN" https://api-http.littlebitscloud.cc/v2/subscriptions -d publisher_id=DEVICE_ID -d subscriber_id=http://your-app.heroku.com -d publisher_events='["amplitude:delta:ignite"]'
-```
+1. Deploy the demo Heroku app
 
-Check your subscription:
+  ```
+  git clone git@github.com:littlebits/workshop-nodeconfeu-2014.git \
+  && cd workshop-nodeconfeu-2014/demo-cloudbit-reader \
+  && heroku apps:create YOUR_APP \
+  && git remote add heroku git@heroku.com:YOUR_APP.git \
+  && git push heroku
+  ```
 
-```
-curl -H "Authorization: Bearer TOKEN" https://api-http.littlebitscloud.cc/v2/subscriptions?publisher_id=DEVICE_ID
-```
+2. Make your endpoint read from the cloudBit
 
+  ```
+  curl -i -XPOST \
+  -H "Authorization: Bearer ACCESS_TOKEN" \
+  https://api-http.littlebitscloud.cc/v2/subscriptions \
+  -d publisher_id=CLOUDBIT_ID \
+  -d subscriber_id=http://YOUR_APP.heroku.com \
+  -d publisher_events='["amplitude:delta:ignite"]'
+  ```
+3. Inspect your cloudBit's current "readers" (AKA subscribers)
+
+  ```
+  curl -H \
+  "Authorization: Bearer ACCESS_TOKEN" \
+  https://api-http.littlebitscloud.cc/v2/subscriptions?publisher_id=CLOUDBIT_ID
+  ```
+4. Stop reading
+
+  ```
+  curl -H -XDELETE \
+  "Authorization: Bearer ACCESS_TOKEN" \
+  https://api-http.littlebitscloud.cc/v2/subscriptions \
+  -d publisher_id=CLOUDBIT_ID \
+  -d subscriber_id=http://YOUR_APP.heroku.com
+  ```
+5. Investigate the HTTP API docs for how you can make one cloudBit read from another
