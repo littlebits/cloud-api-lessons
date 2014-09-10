@@ -2,9 +2,10 @@
   "name": "littlebits-nodeconfeu-demo",
   "version": "0.0.1",
   "description": "littleBits NodeConf EU demo",
-  "main": "server.js",
+  "main": "./demo-cloudbit-reader/index.js",
   "scripts": {
-    "start": "make dev"
+    "start": "node ./demo-cloudbit-reader/index.js",
+    "dev": "PORT=8888 NODE_ENV=dev foreman start -f Procfile.dev"
   },
   "repository": {
     "type": "git",
