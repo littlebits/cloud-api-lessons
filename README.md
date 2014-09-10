@@ -38,7 +38,7 @@
 ##### Lesson 2: Read from cloudBit
 Replace `YOUR_APP` with the application name you would like.
 
-1. Deploy the demo Heroku app
+1. Deploy the demo cloudBit reader app to Heroku
 
   ```
   git clone git@github.com:littlebits/workshop-nodeconfeu-2014.git \
@@ -48,7 +48,7 @@ Replace `YOUR_APP` with the application name you would like.
   && git push heroku
   ```
 
-2. Make your endpoint read from the cloudBit
+2. Tell the app to read from your cloudBit
 
   ```
   curl -i -XPOST \
