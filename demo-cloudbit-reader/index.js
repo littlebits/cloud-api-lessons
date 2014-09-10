@@ -29,6 +29,9 @@ function handleCloudbitEvent(event){
       var delta = event.payload.delta
       console.log('cloudBit amplitude: percent @ %d% | level @ %s | delta @ %s', percent, level, delta)
       break
+    case 'connectionChange':
+      // One day, cloudBits will emit this event too, but not yet.
+      break
     default:
       console.warn('cloudBit sent an unexpected event...? %j', event)
       break
