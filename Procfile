@@ -1,1 +1,1 @@
-web: node ./demo-cloudbit-reader/index.js
+web: node ./seed-cloudbit-reader/index.js

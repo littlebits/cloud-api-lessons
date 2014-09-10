@@ -73,7 +73,10 @@ Replace `YOUR_APP` with the application name you would like.
   ```
 5. Investigate the HTTP API docs for how you can make one cloudBit read from another
 
+#### Lesson 3: Make a mash-up!
 
+Ok, not really a lesson. Create an original mashup between your cloudBit and another service that does something awesome.
+Best mash-up wins some littleBits including a cloudBit :)
 
 ## Resources
 - cloudBit Cloud Control app: http://littlebits.cc/cloudstart
