@@ -9,9 +9,8 @@ var server = http.createServer(function(request, response){
   })
   request.on('end', function(){
     handleCloudbitEvent(JSON.parse(bodyString))
-    response
-      .writeHead(200, {'Content-Type': 'text/plain'})
-      .end('OK')
+    response.writeHead(200, {'Content-Type': 'text/plain'})
+    response.end('OK')
   })
 })
 
