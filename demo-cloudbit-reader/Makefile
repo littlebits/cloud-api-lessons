@@ -1,5 +1,3 @@
-# For us
-
 dev:
 	PORT=8888 NODE_ENV=dev foreman start -f Procfile.dev
 

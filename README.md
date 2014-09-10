@@ -1,8 +1,9 @@
-# ⧮ Hardware workshop at NodeConf EU 2014
+# ⧮ Hardware workshop
+**@ NodeConf EU 2014!**
 
 ## Prerequisites
 1. Have a littleBits account to associate your cloudBit to; [Create account](https://littlebits.cc/signup).
-2. Have a Heroku (or whichever) account to host a simple webhook endpoint for your cloudBit.
+2. Have a Heroku (or whichever) account to host a webhook endpoint for your cloudBit.
 3. Visit Colin, tell him the email used for your littleBits account, get a cloudBit.
 4. Get `ACCESS_TOKEN` and `CLOUDBIT_ID` from [Cloud Control](control.littlebitscloud.cc)
 
