@@ -1,17 +1,14 @@
 # ⧮ Hardware workshop
 **@ NodeConf EU 2014!**
 
+
+
 ## Prerequisites
 1. Have a littleBits account to associate your cloudBit to; [Create account](https://littlebits.cc/signup).
-2. Have a Heroku (or whichever) account to host a webhook endpoint for your cloudBit.
+2. Have a Heroku account to host a webhook endpoint for your cloudBit (also, the heroku gem).
 3. Visit Colin, tell him the email used for your littleBits account, get a cloudBit.
 4. Get `ACCESS_TOKEN` and `CLOUDBIT_ID` from [Cloud Control](control.littlebitscloud.cc)
 
-
-
-## Resources
-- cloudBit Cloud Control app: http://littlebits.cc/cloudstart
-- littleBits Cloud HTTP API docs: http://developer.littlebitscloud.cc
 
 
 ## Lessons
@@ -75,3 +72,10 @@ Replace `YOUR_APP` with the application name you would like.
   -d subscriber_id=http://YOUR_APP.heroku.com
   ```
 5. Investigate the HTTP API docs for how you can make one cloudBit read from another
+
+
+
+## Resources
+- cloudBit Cloud Control app: http://littlebits.cc/cloudstart
+- littleBits Cloud HTTP API docs: http://developer.littlebitscloud.cc
+- HTTP API library: https://github.com/littlebits/cloud-client-api-http
