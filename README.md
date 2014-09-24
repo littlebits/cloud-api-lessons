@@ -15,15 +15,15 @@
 
 ##### Lesson 1: Write to cloudBit
 1. Try default output
-  ```
-  curl -i -XPOST \
+  ```sh
+  $ curl -i -XPOST \
   -H "Authorization: Bearer ACCESS_TOKEN" \
   https://api-http.littlebitscloud.cc/v2/devices/CLOUDBIT_ID/output
   ````
 
 2. Try 50% output for 5 seconds
-  ```
-  curl -i -XPOST \
+  ```sh
+  $ curl -i -XPOST \
   -H "Authorization: Bearer ACCESS_TOKEN" \
   https://api-http.littlebitscloud.cc/v2/devices/CLOUDBIT_ID/output \
   -d percent=50 \
@@ -37,8 +37,8 @@ Replace `YOUR_APP` with the application name you would like.
 
 1. Deploy the demo cloudBit reader app to Heroku
 
-  ```
-  git clone git@github.com:littlebits/workshop-nodeconfeu-2014.git \
+  ```sh
+  $ git clone git@github.com:littlebits/workshop-nodeconfeu-2014.git \
   && cd workshop-nodeconfeu-2014 \
   && heroku apps:create YOUR_APP \
   && git remote add heroku git@heroku.com:YOUR_APP.git \
@@ -47,8 +47,8 @@ Replace `YOUR_APP` with the application name you would like.
 
 2. Tell the app to read from your cloudBit
 
-  ```
-  curl -i -XPOST \
+  ```sh
+  $ curl -i -XPOST \
   -H "Authorization: Bearer ACCESS_TOKEN" \
   https://api-http.littlebitscloud.cc/v2/subscriptions \
   -d publisher_id=CLOUDBIT_ID \
@@ -57,15 +57,15 @@ Replace `YOUR_APP` with the application name you would like.
   ```
 3. Inspect your cloudBit's current "readers" (AKA subscribers)
 
-  ```
-  curl -H \
+  ```sh
+  $ curl -H \
   "Authorization: Bearer ACCESS_TOKEN" \
   https://api-http.littlebitscloud.cc/v2/subscriptions?publisher_id=CLOUDBIT_ID
   ```
 4. Stop reading
 
-  ```
-  curl -H -XDELETE \
+  ```sh
+  $ curl -H -XDELETE \
   "Authorization: Bearer ACCESS_TOKEN" \
   https://api-http.littlebitscloud.cc/v2/subscriptions \
   -d publisher_id=CLOUDBIT_ID \
