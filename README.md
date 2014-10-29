@@ -1,5 +1,7 @@
-# ⧮ Hardware workshop
-**@ NodeConf EU 2014!**
+# littleBits cloudBit API
+## Example Lessons to Get Started
+
+##### Developed for a ⧮ Hardware workshop at [NodeConf EU 2014](http://nodeconfeu.com/)
 
 
 
