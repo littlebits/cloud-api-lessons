@@ -40,16 +40,24 @@
 ##### Lesson 2: Read from cloudBit
 
 1. Get the cloudBit's current input voltage
+
   ```sh
   $ curl -i \
   -H "Authorization: Bearer ACCESS_TOKEN" \
   https://api-http.littlebitscloud.cc/v3/devices/CLOUDBIT_ID/input
   ```
+
 This will start a stream of values, you can stop by hitting `ctrl-c`. Each value
 will be a `json` object with a bunch of metadata. The most useful one in most cases being:
 
-`data.payload.percent`
+`data.percent`
 
+You will see the `percent` value near the end of the response, in the below example, `"percent":69`
+
+```
+data:{"type":"input","timestamp":1415472471048,"from":{"user":{"id":1323},"device":{"id":"1a2b3c4d5e6f","device":"littlebits-module-cloud","setup_version":"1.0.0","protocol_version":"1.1.0","firmware_version":"1.0.140820b","mac":"1a2b3c4d5e6f","hash":"XXXXXXXXXXXXXXXXXXXXXXXXXXX","ap":{"ssid":"MySuperInternet!","mac":"AA:BB:CC:DD:EE:FF","strength":100}},"server":{"id":"QkZVqqe"}},"percent":69,"absolute":709,"name":"amplitude","payload":{"percent":69,"absolute":709}}
+```
+<!--
   ```json
     data: {
       "type":"input",
@@ -83,7 +91,7 @@ will be a `json` object with a bunch of metadata. The most useful one in most ca
       }
     }
   ```
-
+-->
 
 ##### Lesson 3: Read from cloudBit with remote app
 
