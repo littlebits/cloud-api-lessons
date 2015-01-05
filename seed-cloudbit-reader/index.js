@@ -3,11 +3,16 @@ var http = require('http')
 
 
 var server = http.createServer(function(request, response) {
+  console.log('Handling new request: method %j | URI %j ', request.method, request.url)
+
   var bodyString = ''
+
   request.on('data', function(bodyChunk) {
+    console.log('Received data chunk received: %j', String(bodyChunk))
     bodyString += String(bodyChunk)
   })
-  request.on('end', function() {
+
+  request.once('end', function() {
     /* On any GET respond with a friendly message explaining that this
     application has no interesting client-side component. */
     if (request.method === 'GET') return response.end('Hello, this is a trivial cloudBit Reader App. Nothing else to see here; all the action happens server-side. Confused? On the CLI use `$ heroku logs` to see any recent input activity from webhook-registered cloudBits.')
