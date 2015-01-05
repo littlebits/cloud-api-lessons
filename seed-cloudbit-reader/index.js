@@ -20,6 +20,7 @@ var server = http.createServer(function(request, response) {
     try {
       cloudBitEvent = JSON.parse(bodyString)
     } catch (jsonParseError) {
+      response.end('ERROR')
       return console.error('There was a JSON parse error on the POST body: %j. The error was: %j', bodyString, jsonParseError)
     }
 
