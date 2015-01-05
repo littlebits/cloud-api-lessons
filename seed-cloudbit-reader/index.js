@@ -10,11 +10,20 @@ var server = http.createServer(function(request, response) {
   request.on('end', function() {
     /* On any GET respond with a friendly message explaining that this
     application has no interesting client-side component. */
-    if (request.method === 'GET') return response.end('Hello, this is a trivial cloudBit Reader App. Nothing else to see here; all the action happens server-side. Confused? On the CLI use `$ heroku logs` to see any input activity from webhook-registered cloudBits.')
+    if (request.method === 'GET') return response.end('Hello, this is a trivial cloudBit Reader App. Nothing else to see here; all the action happens server-side. Confused? On the CLI use `$ heroku logs` to see any recent input activity from webhook-registered cloudBits.')
 
     /* On any POST respond with a 200 OK string. Yup, this is very liberal. */
-    console.log('Received POST body: %j', bodyString) 
-    handleCloudbitEvent(JSON.parse(bodyString))
+    console.log('Received POST body: %j', bodyString)
+
+    /* Try to safely parse the BODY */
+    var cloudBitEvent
+    try {
+      cloudBitEvent = JSON.parse(bodyString)
+    } catch (jsonParseError) {
+      return console.error('There was a JSON parse error on the POST body: %j. The error was: %j', bodyString, jsonParseError)
+    }
+
+    handleCloudbitEvent(cloudBitEvent)
     response.writeHead(200, {'Content-Type': 'text/plain'})
     response.end('OK')
   })
