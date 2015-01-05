@@ -103,7 +103,6 @@ Replace `YOUR_APP` with the application name you would like.
   $ git clone git@github.com:littlebits/cloud-api-lessons.git \
   && cd cloud-api-lessons \
   && heroku apps:create YOUR_APP \
-  && git remote add heroku git@heroku.com:YOUR_APP.git \
   && git push heroku
   ```
 
