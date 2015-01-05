@@ -2,19 +2,24 @@ var http = require('http')
 
 
 
-var server = http.createServer(function(request, response){
+var server = http.createServer(function(request, response) {
   var bodyString = ''
-  request.on('data', function(bodyChunk){
+  request.on('data', function(bodyChunk) {
     bodyString += String(bodyChunk)
   })
-  request.on('end', function(){
+  request.on('end', function() {
+    /* On any GET respond with a friendly message explaining that this
+    application has no interesting client-side component. */
+    if (request.method === 'GET') return response.end('Hello, this is a trivial cloudBit Reader App. Nothing else to see here; all the action happens server-side.')
+
+    /* On any POST respond with a 200 OK string. Yup, this is very liberal. */
     handleCloudbitEvent(JSON.parse(bodyString))
     response.writeHead(200, {'Content-Type': 'text/plain'})
     response.end('OK')
   })
 })
 
-server.listen(process.env.PORT || 3000, function(){
+server.listen(process.env.PORT || 3000, function() {
   console.log('App booted at: %j', server.address())
 })
 
