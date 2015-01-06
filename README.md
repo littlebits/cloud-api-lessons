@@ -113,7 +113,7 @@ Replace `YOUR_APP` with the application name you would like.
   -H "Authorization: Bearer ACCESS_TOKEN" \
   https://api-http.littlebitscloud.cc/v3/subscriptions \
   -d publisher_id=CLOUDBIT_ID \
-  -d subscriber_id=http://YOUR_APP.heroku.com
+  -d subscriber_id=http://YOUR_APP.herokuapp.com
   ```
 
 3. Inspect your cloudBit's current "readers" (AKA subscribers)
@@ -131,7 +131,7 @@ Replace `YOUR_APP` with the application name you would like.
   "Authorization: Bearer ACCESS_TOKEN" \
   https://api-http.littlebitscloud.cc/v2/subscriptions \
   -d publisher_id=CLOUDBIT_ID \
-  -d subscriber_id=http://YOUR_APP.heroku.com
+  -d subscriber_id=http://YOUR_APP.herokuapp.com
   ```
 
 5. Investigate the HTTP API docs for how you can make one cloudBit read from another
