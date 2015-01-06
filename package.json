@@ -3,9 +3,12 @@
   "version": "0.0.1",
   "description": "littleBits NodeConf EU demo",
   "main": "./seed-cloudbit-reader/index.js",
+  "engines": {
+    "node": ">= 0.11.13"
+  },
   "scripts": {
-    "start": "node ./seed-cloudbit-reader/index.js",
-    "dev": "PORT=8888 NODE_ENV=dev foreman start -f Procfile.dev"
+    "start": "node --harmony ./seed-cloudbit-reader/index.js",
+    "dev": "NODE_ENV=dev node-dev --harmony ./seed-cloudbit-reader/index.js"
   },
   "repository": {
     "type": "git",
@@ -15,8 +18,8 @@
     "node-dev": "~2.1.6"
   },
   "dependencies": {
-    "body-parser": "^1.10.1",
-    "express": "^4.10.7",
-    "morgan": "^1.5.1"
+    "koa": "^0.14.0",
+    "koa-parse-json": "^1.0.0",
+    "koa-route": "^2.4.0"
   }
 }

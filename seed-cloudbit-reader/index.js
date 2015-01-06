@@ -1,42 +1,47 @@
-var express = require('express')
-var bodyParser = require('body-parser')
-var morgan = require('morgan')
-var app = express()
+var koa = require('koa')
+var koaParseJson = require('koa-parse-json')
+var route = require('koa-route')
 
 
 
-/* Middleware */
-
-app.use(bodyParser.json())
-app.use(morgan('dev'))
+var port = Number(process.env.PORT) || 7800
+var app = koa()
 
 
 
-/* Rotues */
+app.use(koaParseJson())
+
+
 
 /* On a root GET respond with a friendly message explaining that this
 application has no interesting client-side component. */
-app.get('/', function(req, res) {
-  res.send('Hello, this is a trivial cloudBit Reader App. Nothing else to see here; all the action happens server-side. Confused? On the CLI use `$ heroku logs` to see any recent input activity from webhook-registered cloudBits.')
-})
+
+app.use(route.get('/', function *() {
+
+  this.body = 'Hello, this is a trivial cloudBit Reader App. Nothing else to see here; all the action happens server-side.  To see any recent input activity from webhook-registered cloudBits do this on the command line: `heroku logs --tail`.'
+
+}))
+
+
 
 /* On a root POST log info about the (should be) cloudBit event. */
-app.post('/', function(req, res) {
-  handleCloudbitEvent(req.body)
-  res.send('OK')
-})
+
+app.use(route.post('/', function *() {
+
+  console.log('received POST: %j', this.request.body)
+
+  if (this.request.body && this.request.body.type) {
+    handleCloudbitEvent(this.request.body)
+  }
+
+  this.body = 'OK'
+
+}))
 
 
 
-/* Boot the server. */
-
-var server = app.listen(process.env.PORT || 3000, function() {
-  var host = server.address().address
-  var port = server.address().port
-
-  console.log('App booted at http://%s:%s', host, port)
-})
-
+app.listen(port)
+console.log('App booted on port %d', port)
 
 
 
@@ -52,7 +57,7 @@ function handleCloudbitEvent(event) {
       // One day, cloudBits will emit this event too, but not yet.
       break
     default:
-      console.warn('cloudBit sent an unexpected event...? %j', event)
+      console.warn('cloudBit sent an unexpected event: %j', event)
       break
   }
 }
