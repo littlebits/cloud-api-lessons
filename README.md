@@ -111,7 +111,7 @@ Replace `YOUR_APP` with the application name you would like.
   ```sh
   $ curl -i -XPOST \
   -H "Authorization: Bearer ACCESS_TOKEN" \
-  https://api-http.littlebitscloud.cc/v3/subscriptions \
+  https://api-http.littlebitscloud.cc/v2/subscriptions \
   -d publisher_id=CLOUDBIT_ID \
   -d subscriber_id=http://YOUR_APP.herokuapp.com
   ```
